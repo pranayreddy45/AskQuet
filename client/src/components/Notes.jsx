@@ -18,7 +18,7 @@ function Notes(props) {
     setNotes([]);
     //console.log("useEffect NOtes");
     axios
-      .post("http://localhost:4000/post_user123", {
+      .post("https://pranayreddy-askquet.herokuapp.com/post_user123", {
         withCredentials: true,
       })
       .then((response) => {

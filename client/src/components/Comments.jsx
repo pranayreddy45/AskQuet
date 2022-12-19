@@ -15,7 +15,7 @@ function Comments(props) {
     } else {
       try {
         axios
-          .post("http://localhost:4000/user_comment", {
+          .post("https://pranayreddy-askquet.herokuapp.com/user_comment", {
             userPostId: props.postId,
             userName: props.userName,
             userComment: comment,

@@ -33,7 +33,7 @@ function CreateArea(props) {
     } else {
       try {
         axios
-          .post("http://localhost:4000/post_user", {
+          .post("https://pranayreddy-askquet.herokuapp.com/post_user", {
             userName: props.userName,
             title: note.title.trim(),
             content: note.content,

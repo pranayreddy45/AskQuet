@@ -23,7 +23,7 @@ function Post() {
   let id = params.id;
   const refreshToken = async () => {
     const res = await axios
-      .post("http://localhost:4000/refresh", {
+      .post("https://pranayreddy-askquet.herokuapp.com/refresh", {
         withCredentials: true,
       })
       .catch((err) => {
@@ -59,7 +59,7 @@ function Post() {
     //console.log("Params Id: " + id);
     axios
       .post(
-        "http://localhost:4000/post_page",
+        "https://pranayreddy-askquet.herokuapp.com/post_page",
         { id },
         {
           withCredentials: true,
@@ -92,7 +92,7 @@ function Post() {
   function addNote() {
     setComments([]);
     axios
-      .post("http://localhost:4000/getuser_comment123")
+      .post("https://pranayreddy-askquet.herokuapp.com/getuser_comment123")
       .then((response) => {
         response.data.forEach((element) => {
           setComments((prevValue) => {

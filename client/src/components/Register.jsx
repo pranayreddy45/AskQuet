@@ -31,7 +31,7 @@ function Register() {
   useEffect(() => {
     // let authToken = localStorage.getItem("Authtoken");
     axios
-      .post("http://localhost:4000/dashboard", {
+      .post("https://pranayreddy-askquet.herokuapp.com/dashboard", {
         withCredentials: true,
       })
       .then((response) => {
@@ -178,7 +178,7 @@ function Register() {
       //console.log("Else error status: " + errorStatus);
       try {
         axios
-          .post("http://localhost:4000/userRegistration", userRegister, {
+          .post("https://pranayreddy-askquet.herokuapp.com/userRegistration", userRegister, {
             withCredentials: true,
           })
           .then(() => {

@@ -27,7 +27,7 @@ function Login() {
   useEffect(() => {
     // let authToken = localStorage.getItem("Authtoken");
     axios
-      .post("http://localhost:4000/dashboard", {
+      .post("https://pranayreddy-askquet.herokuapp.com/dashboard", {
         withCredentials: true,
       })
       .then((response) => {
@@ -101,7 +101,7 @@ function Login() {
       //console.log("Else error status: " + errorStatus);
       try {
         axios
-          .post("http://localhost:4000/userLogin", userLogin, {
+          .post("https://pranayreddy-askquet.herokuapp.com/userLogin", userLogin, {
             withCredentials: true,
           })
           .then((response) => {

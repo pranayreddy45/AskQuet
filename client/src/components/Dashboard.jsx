@@ -18,7 +18,7 @@ function Dashboard(props) {
   });
   const refreshToken = async () => {
     const res = await axios
-      .post("http://localhost:4000/refresh", {
+      .post("https://pranayreddy-askquet.herokuapp.com/refresh", {
         withCredentials: true,
       })
       .then((resp) => {
@@ -35,7 +35,7 @@ function Dashboard(props) {
     if (firstRender) {
       setFirstRender(false);
       axios
-        .post("http://localhost:4000/dashboard", {
+        .post("https://pranayreddy-askquet.herokuapp.com/dashboard", {
           withCredentials: true,
         })
         .then((response) => {

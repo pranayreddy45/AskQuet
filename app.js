@@ -16,7 +16,7 @@ const moment = require("moment");
 const middleware = require("./middleware");
 const refreshToken = require("./refreshToken");
 const app = express();
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());

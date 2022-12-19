@@ -27,7 +27,7 @@ function Header(props) {
   }, []);
 
   async function sendLogoutReq() {
-    const res = await axios.post("http://localhost:4000/logout", {
+    const res = await axios.post("https://pranayreddy-askquet.herokuapp.com/logout", {
       withCredentials: true,
     });
     if (res.status === 200) {

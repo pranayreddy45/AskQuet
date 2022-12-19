@@ -18,7 +18,7 @@ function UserPosts(props) {
   const [userName, setUserName] = useState();
   const refreshToken = async () => {
     const res = await axios
-      .post("http://localhost:4000/refresh", {
+      .post("https://pranayreddy-askquet.herokuapp.com/refresh", {
         withCredentials: true,
       })
       .then((resp) => {
@@ -41,7 +41,7 @@ function UserPosts(props) {
       .catch((err) => {});
     //console.log("useEffect NOtes userposts ");
     axios
-      .post("http://localhost:4000/post_user123", {
+      .post("https://pranayreddy-askquet.herokuapp.com/post_user123", {
         withCredentials: true,
       })
       .then((response) => {
@@ -67,7 +67,7 @@ function UserPosts(props) {
     setNotes([]);
     //console.log("addNote function");
     axios
-      .post("http://localhost:4000/post_user123", {
+      .post("https://pranayreddy-askquet.herokuapp.com/post_user123", {
         withCredentials: true,
       })
       .then((response) => {

@@ -16,7 +16,7 @@ function Note(props) {
   const [commentsCount, setCommentsCount] = useState(0);
   useEffect(() => {
     axios
-      .post("http://localhost:4000/getuser_comment123")
+      .post("https://pranayreddy-askquet.herokuapp.com/getuser_comment123")
       .then((response) => {
         setCommentsCount(
           response.data.filter((item) => {
@@ -35,7 +35,7 @@ function Note(props) {
   function handleClick() {
     //console.log("Delete Note Id: ", props.id);
     axios
-      .post("http://localhost:4000/delete_post_user", {
+      .post("https://pranayreddy-askquet.herokuapp.com/delete_post_user", {
         id: props.id,
       })
       .then((response) => {

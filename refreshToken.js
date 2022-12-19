@@ -2,13 +2,13 @@ const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
   try {
-    console.log("I am in refresh token js page");
+    // console.log("I am in refresh token js page");
     const cookies = req.headers.cookie;
     if (!cookies) {
       return res.status(400).send("Token not found");
     }
     const prevToken = cookies.split("=")[1];
-    console.log("PrevToken", prevToken);
+    // console.log("PrevToken", prevToken);
     if (!prevToken) {
       return res.status(400).json({ message: "Couldn't find the token" });
     }
@@ -23,7 +23,7 @@ module.exports = function (req, res, next) {
           userEmail: result.user.userEmail,
         },
       };
-      console.log("clearcookie", result.user.userName);
+      // console.log("clearcookie", result.user.userName);
       res.clearCookie(`${result.user.userName}`);
       req.cookies[`${result.user.userName}`] = "";
 
@@ -31,7 +31,7 @@ module.exports = function (req, res, next) {
         expiresIn: "49h",
       });
       if (err) throw err;
-      console.log("Regenerated token\n", token);
+      // console.log("Regenerated token\n", token);
       res.cookie(result.user.userName, token, {
         path: "/",
         expires: new Date(Date.now() + 48 * 60 * 60 * 1000),

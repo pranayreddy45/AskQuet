@@ -47,14 +47,28 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 //     console.log("DB connection established");
 //   });
 
+// mongoose
+//   .connect("mongodb://localhost:27017/prblogDB123", {
+//     useNewUrlParser: true,
+//   })
+//   .then(() => {
+//     console.log("DB connection established");
+//   })
+//   .catch((err) => console.log("DB error: ", err));
+
 mongoose
-  .connect("mongodb://localhost:27017/prblogDB123", {
-    useNewUrlParser: true,
-  })
+  .connect(
+    `mongodb+srv://admin-pranay:${process.env.MONGODB_PASSWORD}@cluster0.aew4g.mongodb.net/askquet`,
+    {
+      useNewUrlParser: true,
+    }
+  )
   .then(() => {
-    console.log("DB connection established");
+    console.log("DB Connection established");
   })
-  .catch((err) => console.log("DB error: ", err));
+  .catch((err) => {
+    console.log("DB error: ", err);
+  });
 
 app.post("/userRegistration", async (req, res) => {
   try {
@@ -75,7 +89,7 @@ app.post("/userRegistration", async (req, res) => {
       if (err) {
         return res.status(400).send("Bcrypt Error: ", err);
       }
-      console.log("Bcrypt Hash: ", hash);
+      // console.log("Bcrypt Hash: ", hash);
 
       let newUser = new Registeruser({
         userName: userName,
@@ -84,7 +98,7 @@ app.post("/userRegistration", async (req, res) => {
       });
 
       await newUser.save().then(() => {
-        console.log("Save then inside promise");
+        // console.log("Save then inside promise");
         let payload = {
           user: {
             userName: userName,
@@ -120,7 +134,7 @@ app.post("/userLogin", async (req, res) => {
   try {
     const { userEmail, userPassword } = req.body;
     let exist = await Registeruser.findOne({ userEmail: userEmail });
-    console.log(exist);
+    //console.log(exist);
     if (!exist) {
       return res.status(400).send("Email not found, Please register");
     }
@@ -145,7 +159,7 @@ app.post("/userLogin", async (req, res) => {
           { expiresIn: "49h" },
           (err, token) => {
             if (err) throw err;
-            console.log("Generated Token\n", token);
+            //console.log("Generated Token\n", token);
             if (req.cookies[`${exist.userName}`]) {
               req.cookies[`${exist.userName}`] = "";
             }
@@ -188,7 +202,7 @@ app.post("/dashboard", middleware, async (req, res) => {
 app.post("/refresh", refreshToken, middleware, async (req, res) => {
   try {
     let findEmail = req.user.userEmail;
-    console.log("Find Email " + findEmail);
+    //console.log("Find Email " + findEmail);
     let exist = await Registeruser.findOne({ userEmail: findEmail });
     if (!exist) {
       return res.status(400).send("User not found");
@@ -226,7 +240,7 @@ app.post("/post_user", async (req, res) => {
 app.post("/post_user123", middleware, async (req, res) => {
   try {
     let findEmail = req.user.userEmail;
-    console.log("Find Email " + findEmail);
+    //console.log("Find Email " + findEmail);
     let exist1 = await Registeruser.findOne({ userEmail: findEmail });
     if (!exist1) {
       return res.status(400).send("User not found");
@@ -270,7 +284,7 @@ app.post("/delete_post_user", async (req, res) => {
 
 app.post("/post_page", async (req, res) => {
   let { id } = req.body;
-  console.log("userPostId: " + id);
+  //console.log("userPostId: " + id);
   try {
     let exist = await PostUsers.find({ _id: id });
     if (!exist) {
@@ -318,7 +332,7 @@ app.post("/getuser_comment123", async (req, res) => {
 app.post("/logout", middleware, (req, res) => {
   const cookies = req.headers.cookie;
   const prevToken = cookies.split("=")[1];
-  console.log("PrevToken", prevToken);
+  //console.log("PrevToken", prevToken);
   if (!prevToken) {
     return res.status(400).json({ message: "Couldn't find the token" });
   }
@@ -333,9 +347,9 @@ app.post("/logout", middleware, (req, res) => {
         userEmail: result.user.userEmail,
       },
     };
-    console.log("clearcookie", result.user.userName);
+    //console.log("clearcookie", result.user.userName);
     res.clearCookie(`${result.user.userName}`);
-    req.cookies[`${result.user.userName}`] = "";
+    // req.cookies[`${result.user.userName}`] = "";
     return res.status(200).json({ message: "Sucessfully Logged out" });
   });
 });

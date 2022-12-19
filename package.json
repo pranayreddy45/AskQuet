@@ -2,10 +2,15 @@
   "name": "prblog",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.17.1"
+  },
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "npm run build && node app.js"
   },
   "author": "",
@@ -21,6 +26,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.37",
     "mongoose": "^6.6.5",
+    "node": "^16.17.1",
     "nodemon": "^2.0.20",
     "path": "^0.12.7"
   }

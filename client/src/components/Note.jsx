@@ -79,14 +79,21 @@ function Note(props) {
       <Card
         style={
           props.notename === "postusercomment"
-            ? { width: "60%" }
-            : { width: "100%" }
+            ? { width: "60%", maxHeight: "300px" }
+            : { width: "100%", height: "500px" }
         }
         border="none"
         className="customeCard"
       >
         {props.notename === "postusercomment" ? null : (
-          <Card.Header as="h1" className="text-center">
+          <Card.Header
+            as="h1"
+            style={
+              props.title.length > 60
+                ? { height: "120px", overflow: "scroll" }
+                : null
+            }
+          >
             {" "}
             <Link
               style={{
@@ -99,15 +106,19 @@ function Note(props) {
               onClick={handleLinkClick}
             >
               {" "}
-              <h1>
-                {/* {props.count + 1}
-              {") "}  */}
-                {props.title}
-              </h1>{" "}
+              {props.title.length > 50 ? (
+                <h4>{props.title}</h4>
+              ) : props.title.length > 35 ? (
+                <h3>{props.title}</h3>
+              ) : props.title.length > 15 ? (
+                <h2>{props.title}</h2>
+              ) : (
+                <h1>{props.title}</h1>
+              )}{" "}
             </Link>{" "}
           </Card.Header>
         )}
-        <Card.Body>
+        <Card.Body style={isExpanded ? { overflow: "scroll" } : null}>
           <Card.Text
             style={{ textAlign: "justify", textJustify: "inter-word" }}
           >
@@ -120,9 +131,9 @@ function Note(props) {
               {props.content.length > 200 ? (
                 isExpanded ? (
                   <>
-                    {props.content.length > 1000 ? (
+                    {props.content.length > 2000 ? (
                       <>
-                        {props.content.substring(0, 1000) + ".............."}{" "}
+                        {props.content.substring(0, 2000) + ".............."}{" "}
                         {ReadFullContext} <p>{setLines}</p>
                       </>
                     ) : (

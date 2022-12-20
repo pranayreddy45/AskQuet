@@ -58,7 +58,7 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 
 mongoose
   .connect(
-    `mongodb+srv://admin-pranay:${process.env.MONGODB_PASSWORD}@cluster0.aew4g.mongodb.net/askquet`,
+    "mongodb+srv://admin-pranay:adminpranay123@cluster0.aew4g.mongodb.net/askquet",
     {
       useNewUrlParser: true,
     }

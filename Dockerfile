@@ -12,7 +12,7 @@ RUN npm run install-client
 RUN npm run build
 
 USER app
-EXPOSE 4000
+EXPOSE 80
 
 CMD ["npm", "start"]
 

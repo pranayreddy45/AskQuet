@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo Installing dependencies...
+      - npm install
+      - cd ./client && npm install
+  build:
+    commands:
+      - echo Building the app...
+      - cd ./client && npm run build
+  post_build:
+    commands:
+      - echo Copying files to S3...
+      - aws s3 cp client/build s3://client-build/client --recursive
+artifacts:
+  files:
+    - '**/*'
+  base-directory: client/build

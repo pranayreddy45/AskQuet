@@ -15,7 +15,7 @@ phases:
   post_build:
     commands:
       - echo Copying files to S3...
-      - aws s3 cp client/build s3://client-build/client --recursive
+      - aws s3 cp client/build s3://codepipeline-ap-south-1-921059379869/client --recursive
 artifacts:
   files:
     - "**/*"

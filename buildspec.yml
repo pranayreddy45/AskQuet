@@ -7,16 +7,16 @@ phases:
     commands:
       - echo Installing dependencies...
       - npm install
-      - cd ./client && npm install
+      - cd ./client && npm install && cd ..
   build:
     commands:
       - echo Building the app...
-      - cd ./client && npm run build
+      - cd ./client && npm run build && cd ..
   post_build:
     commands:
       - echo Copying files to S3...
       - aws s3 cp client/build s3://client-build/client --recursive
 artifacts:
   files:
-    - '**/*'
+    - "**/*"
   base-directory: client/build

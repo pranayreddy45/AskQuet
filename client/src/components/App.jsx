@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  console.log("User Login State: ", isLoggedIn);
+  console.log("User's Login State: ", isLoggedIn);
   return (
     <div>
       <Routes>

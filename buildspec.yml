@@ -11,8 +11,8 @@ phases:
   build:
     commands:
       - echo Building the app...
-      - docker-compose build
-      # - cd ./client && npm run build && cd ..
+      - cd ./client && npm run build && cd ..
+      - npm start
 # post_build:
 #   commands:
 #     - echo Copying files to S3...

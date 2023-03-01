@@ -1,17 +1,18 @@
 version: 0.2
 
-# phases:
-#   install:
-#     runtime-versions:
-#       nodejs: 16
-#     commands:
-#       - echo Installing dependencies...
-#       - npm install
-#       - cd ./client && npm install && cd ..
-#   build:
-#     commands:
-#       - echo Building the app...
-#       - cd ./client && npm run build && cd ..
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - echo Installing dependencies...
+      - npm ci
+      - cd ./client && npm ci && cd ..
+  build:
+    commands:
+      - echo Building the app...
+      - docker-compose build
+      # - cd ./client && npm run build && cd ..
 # post_build:
 #   commands:
 #     - echo Copying files to S3...
